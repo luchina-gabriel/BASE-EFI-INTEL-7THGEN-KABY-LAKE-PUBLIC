@@ -6,6 +6,10 @@
 <br><br>
 🇧🇷 - Para download das EFIs BASEs, é necessário você ser membro de qualquer categoria no canal do YouTube e conectar seu Discord à sua conta YouTube para acesso à sala `#efi-base`;
 
+![youtube_connection](https://github.com/luchina-gabriel/BASE-EFI-INTEL-DESKTOP-7THGEN-KABY-LAKE-PUBLIC/assets/23700365/131e9a12-9e95-4ef8-b1b1-09859c1ba898)
+<br>
+![efi-base-channel](https://github.com/luchina-gabriel/BASE-EFI-INTEL-DESKTOP-7THGEN-KABY-LAKE-PUBLIC/assets/23700365/2eaad077-cf14-42fd-97a7-27c83951112d)
+
 # Basic Info
 
 Note|Description
