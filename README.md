@@ -1,4 +1,4 @@
-# BASE EFI Intel Kaby Lake
+# BASE EFI Intel Kaby Lake and Amber Lake Y
 
 # 🛠️ Remote Services | Serviços remotos
 
@@ -23,9 +23,10 @@
 Note|Description
 :----|:----
 Initial macOS Support|macOS 10.12, Sierra.
+Last Supported OS|macOS 13 Ventura.
 
-- Opencore version: 1.0.0
-- Release date: 09/05/2024
+- Opencore version: 1.0.1
+- Release date: 05/08/2024
 
 # Basic Steps
 
@@ -77,7 +78,7 @@ Kext|Description
 [SmallTreeIntel82576.kext](https://github.com/khronokernel/SmallTree-I211-AT-patch/releases)| Required for I211 NICs, based off of the SmallTree kext but patched to support I211.<br>Required for most AMD boards running Intel NICs.
 [AppleIGB.kext](https://github.com/donatengit/AppleIGB/releases)|Required for I211 NICs running on macOS Monterey and above. Might have instability issues on some NICs, recommended to stay on Big Sur and use SmallTree. Requires macOS 12 and above.
 [AppleIGC.kext](https://github.com/SongXiaoXi/AppleIGC/releases)|Required for I226 NICs running on macOS Monterey and above. Might have instability issues on some NICs.
-[AppleIntelI210Ethernet.kext](https://github.com/luchina-gabriel/youtube-files/raw/main/AppleIntelI210Ethernet.kext.zip)|Required for Intel i225-V in macOS 13 (Monterey) and above.
+[AppleIntelI210Ethernet.kext](https://github.com/luchina-gabriel/youtube-files/raw/main/AppleIntelI210Ethernet.kext.zip)|Required for Intel i225-V in macOS 12 (Monterey) and above.
 
 ### WiFi and Bluetooth
 Kext|Description
@@ -103,14 +104,34 @@ Kext|Description
 [SMDRadeonGPU](https://github.com/ChefKissInc/RadeonSensor)|Used for monitoring GPU temperature on AMD GPU systems. Requires RadeonSensor from the same repository. Requires macOS 11 or newer.
 [FeatureUnlock](https://github.com/acidanthera/FeatureUnlock/releases)|Add Sidecar, NightShift, AirPlay, Universal Control and Continuity Camera support.
 
-# ACPI Tables
+### Notebooks
+Kext|Description
+:----|:----
+[VoodooPS2Controller](https://github.com/acidanthera/VoodooPS2/releases)|PS2 Keyboards/Trackpads.<br>Works with various PS2 keyboards, mice, and trackpads.<br>Requires macOS 10.11 or newer for MT2 (Magic Trackpad 2) functions.
+[VoodooRMI](https://github.com/VoodooSMBus/VoodooRMI/releases)|SMBus Trackpads.<br>For systems with Synaptics SMBus trackpads.<br>Requires macOS 10.11 or newer for MT2 functions.<br>Depends on Acidanthera's VoodooPS2.
+[VoodooSMBus](https://github.com/VoodooSMBus/VoodooSMBus/releases)|SMBus Trackpads.<br>For systems with ELAN SMBus Trackpads.<br>Supports macOS 10.14 or newer currently.
+[VoodooI2C](https://github.com/VoodooI2C/VoodooI2C/releases)|I2C/USB HID Devices.<br>Attaches to I2C controllers to allow plugins to talk to I2C trackpads.<br>USB devices using the below plugins still need VoodooI2C.<br>Supports macOS 10.11+.
+[ECEnabler](https://github.com/1Revenger1/ECEnabler/releases)|Fixes reading battery status on many devices (Allows reading EC fields over 8 bits long).<br>Supports OS X 10.7 and above (not needed on 10.4 - 10.6).
+[BrightnessKeys](https://github.com/acidanthera/BrightnessKeys/releases)|Fixes brightness keys automatically.
+
+# ACPI Tables, for Desktop
 
 These files are **MUST** be included in your EFI's ACPI directory. We recommend that you use the **MANUAL** method, but for a first test you can use the prebuild versions.
 
-Table|Description
+SSDT|Description
 :----|:----
 SSDT-PLUG|[Manual](https://dortania.github.io/Getting-Started-With-ACPI/Universal/plug-methods/manual.html) \| [Prebuilt](https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/SSDT-PLUG-DRTNIA.aml) \| [Details](https://dortania.github.io/Getting-Started-With-ACPI/Universal/plug.html)
 SSDT-EC-USBX|[Manual](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-methods/manual.html) \| [Prebuilt](https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/SSDT-EC-USBX-DESKTOP.aml) \| [Details](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html)
+
+# ACPI Tables, for Notebook
+
+SSDT|Description
+:----|:----
+SSDT-PLUG|[Manual](https://dortania.github.io/Getting-Started-With-ACPI/Universal/plug-methods/manual.html) \| [Prebuilt](https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/SSDT-PLUG-DRTNIA.aml) \| [Details](https://dortania.github.io/Getting-Started-With-ACPI/Universal/plug.html)
+SSDT-EC-USBX|[Manual](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-methods/manual.html) \| [Prebuilt](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-EC-USBX-LAPTOP.aml) \| [Details](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html)
+SSDT-RHUB|[Manual](https://dortania.github.io/Getting-Started-With-ACPI/Universal/rhub-methods/manual.html) \| [Prebuilt](https://github.com/luchina-gabriel/youtube-files/raw/main/SSDT-RHUB.aml) \| [Details](https://dortania.github.io/Getting-Started-With-ACPI/Universal/rhub.html)
+SSDT-PNLF|[Manual](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/backlight-methods/manual.html) \| [Prebuilt](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-PNLF.aml) \| [Details](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/backlight.html)
+SSDT-GPIO/XOSI|[Manual](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/trackpad-methods/manual.html) \| [Prebuilt](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/trackpad-methods/prebuilt.html) \| [Details](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/trackpad.html)
 
 ### Dumping your DSDT in Windows Environment
 [Download iASL Compiler ACPI Tools](https://www.intel.com/content/www/us/en/download/774881/acpi-component-architecture-downloads-windows-binary-tools.html)
@@ -149,12 +170,21 @@ Please use [*genSMBIOS*](https://github.com/corpnewt/GenSMBIOS/archive/refs/head
 <br>
 Please use [*ProperTree*](https://github.com/corpnewt/ProperTree/archive/refs/heads/master.zip) for configure/edit your config.plist.
 
-# Compatible SMBIOS
+# Compatible SMBIOS, for Desktop
 
 SMBIOS|Description
 :----|:----
 iMac18,1|Used for computers utilizing the iGPU for displaying.
 iMac18,3|Used for computers using a dGPU for displaying, and an iGPU for computing tasks only.
+
+# Compatible SMBIOS, for Notebook
+
+SMBIOS|Description
+:----|:----
+MacBookPro14,1|Dual Core 15W(Low End), iGPU: Iris Plus 640.
+MacBookPro14,2|Dual Core 15W(High End), iGPU: Iris Plus 650.
+MacBookPro14,3|Quad Core 45W, iGPU: HD 630 + dGPU: Radeon Pro 555X/560X.
+iMac18,1|NUC Systems,iGPU: Iris Plus 640.
 
 # Catalina and older versions of macOS
 
@@ -163,7 +193,7 @@ iMac18,3|Used for computers using a dGPU for displaying, and an iGPU for computi
 
 \* *Without above settings, macOS will not be able to boot.*
 
-# macOS Sonoma 14.4 or above versions
+# macOS Sonoma 14.4 or above versions (including macOS Sequoia (v15))
 - Please configure `SecureBootModel` to `Disabled`;
 - After the installation is completed, you can return the value to 'Default';
 - If the above adjustment is not performed, the installation will be in a looping.
@@ -181,6 +211,12 @@ iMac18,3|Used for computers using a dGPU for displaying, and an iGPU for computi
 	- AAPL,ig-platform-id
 		- 00001259 - Replace AAAAAAAA. Used when the Desktop iGPU is used to drive a display.
 		- 03001259 - Replace AAAAAAAA. Used when the Desktop iGPU is only used for computing tasks and doesn't drive a display.
+		- 00001B59 - Replace AAAAAAAA. Laptop, Recommended for HD 615, HD 620, HD 630, HD 640 and HD 650.
+		- 00001659 - Replace AAAAAAAA. Laptop, Alternative value to 00001B59 if you have acceleration issues, and recommended for all HD and UHD 620 NUCs.
+		- 0000C087 - Replace AAAAAAAA. Laptop, Recommended for Amber Lake's UHD 617 and Kaby Lake-R's UHD 620.
+		- 00001E59 - Replace AAAAAAAA. NUC, Recommended for HD 615.
+		- 00001B59 - Replace AAAAAAAA. NUC, Recommended for HD 630.
+		- 02002659 - Replace AAAAAAAA. NUC, Recommended for HD 640/650.
 	- framebuffer-patch-enabl - Uncomment if no BIOS options for iGPU memory.
 	- framebuffer-stolenmem - Uncomment if no BIOS options for iGPU memory.
 
@@ -220,9 +256,9 @@ nvda_drv_vrl=1|Used for enabling Nvidia's Web Drivers on Maxwell and Pascal card
 - SATA Mode: AHCI
 
 # References
-https://dortania.github.io/OpenCore-Install-Guide/config.plist/kaby-lake.html
+[Desktop, Kaby Lake](https://dortania.github.io/OpenCore-Install-Guide/config.plist/kaby-lake.html)
 <br>
-https://dortania.github.io/Getting-Started-With-ACPI/
+[Laptop, Kaby Lake & Amber Lake Y](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html)
 
 ## Discord - Universo Hackintosh
 - [Access Discord](https://discord.universohackintosh.com.br)
