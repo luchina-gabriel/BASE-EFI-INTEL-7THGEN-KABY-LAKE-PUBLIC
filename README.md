@@ -25,8 +25,8 @@ Note|Description
 Initial macOS Support|macOS 10.12, Sierra.
 Last Supported OS|macOS 13 Ventura.
 
-- Opencore version: 1.0.4
-- Release date: 04/03/2025
+- Opencore version: 1.0.4.1
+- Release date: 02/05/2025
 
 # Basic Steps
 
